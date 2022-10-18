@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
@@ -5,6 +6,7 @@ public class App {
         String opcao;
         Scanner scan = new Scanner(System.in);
         do{
+            limpar();
             System.out.println("""
             Selecione uma opção
             1 - Incluir novo plano de contas
@@ -14,5 +16,13 @@ public class App {
             opcao = scan.nextLine();
         
         }while (!opcao.equals("0"));
+    }
+
+    public static void limpar(String... arg) throws IOException, InterruptedException {
+        try {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }catch(Exception e) {
+        System.out.println(e);
+    }
     }
 }
