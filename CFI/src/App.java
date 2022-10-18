@@ -1,10 +1,24 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         String opcao;
         Scanner scan = new Scanner(System.in);
+
+        Usuario user = ler();
+        if (user == null){
+            System.out.println("nulo");
+            // cria usuário
+        }
+        scan.nextLine();
+
+
         do{
             limpar();
             System.out.println("""
@@ -49,6 +63,36 @@ public class App {
             }
         
         }while (!opcao.equals("0"));
+    }
+
+    public void salvar(Usuario user){
+        try{
+            FileOutputStream arq = new FileOutputStream("usuario.arq");
+            ObjectOutputStream obj = new ObjectOutputStream(arq);
+            obj.writeObject(user);
+            obj.flush();
+            System.out.println("Gravado com sucesso!");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public static Usuario ler(){
+        try{
+            FileInputStream arq = new FileInputStream("usuario.arq");
+            ObjectInputStream obj = new ObjectInputStream(arq);
+            Usuario user = (Usuario)obj.readObject();    
+            return user;                 
+            
+        }
+        catch(Exception e)
+        {  
+            System.out.println(e);
+            return null;
+        }
+        
     }
 
     public static void limpar(String... arg) throws IOException, InterruptedException {
