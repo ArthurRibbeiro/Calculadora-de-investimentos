@@ -15,6 +15,13 @@ public class App {
         if (user == null){
             System.out.println("nulo");
             // cria usuário
+            System.out.println("Informe Seu nome:");
+            String apelido = scan.nextLine();
+            System.out.println("Informe o salário que será calculado (preferencialmente líquido):");
+            double salario = scan.nextDouble();
+            user = new Usuario(apelido, salario);
+
+            //salva
         }
         scan.nextLine();
 
