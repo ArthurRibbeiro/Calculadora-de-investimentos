@@ -9,7 +9,7 @@ public class App {
             limpar();
             System.out.println("""
             Selecione uma opção
-            1 - Configurar salário
+            1 - Editar perfil
             2 - Incluir novo plano de contas
             3 - Editar plano de contas
             4 - Visualizar
