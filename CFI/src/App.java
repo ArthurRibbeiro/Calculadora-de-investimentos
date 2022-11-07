@@ -74,16 +74,19 @@ public class App {
     }
 
     public static void salvar(Usuario user){
+        Scanner scan = new Scanner(System.in);
         try{
             FileOutputStream arq = new FileOutputStream("usuario.arq");
             ObjectOutputStream obj = new ObjectOutputStream(arq);
             obj.writeObject(user);
             obj.flush();
             System.out.println("Gravado com sucesso!");
+            scan.nextLine();
         }
         catch(Exception e)
         {
             System.out.println(e);
+            scan.nextLine();
         }
     }
     

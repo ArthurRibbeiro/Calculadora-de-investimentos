@@ -1,10 +1,13 @@
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     String apelido;
     double salario;
     PlanoDeContas[] planos;
     public Usuario(String apelido, double salario) {
         this.apelido = apelido;
         this.salario = salario;
+
         
     }
     public String getApelido() {
