@@ -5,6 +5,7 @@ public class PlanoDeContas {
     public PlanoDeContas(String nome, double porcent) {
         this.nome = nome;
         this.porcent = porcent;
+        
     }
     public String getNome() {
         return nome;

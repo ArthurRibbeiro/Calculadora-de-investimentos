@@ -22,6 +22,7 @@ public class App {
             user = new Usuario(apelido, salario);
 
             //salva
+            salvar(user);
         }
         scan.nextLine();
 
@@ -72,7 +73,7 @@ public class App {
         }while (!opcao.equals("0"));
     }
 
-    public void salvar(Usuario user){
+    public static void salvar(Usuario user){
         try{
             FileOutputStream arq = new FileOutputStream("usuario.arq");
             ObjectOutputStream obj = new ObjectOutputStream(arq);
