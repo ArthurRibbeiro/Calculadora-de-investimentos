@@ -8,7 +8,8 @@ public class Usuario implements Serializable {
         this.apelido = apelido;
         this.salario = salario;
         PlanoDeContas inicial = new PlanoDeContas("Salário", 100);
-        this.planos[0] = inicial; 
+        PlanoDeContas[] array = {inicial};
+        this.planos = array; 
 
         
     }

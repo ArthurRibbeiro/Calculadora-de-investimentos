@@ -103,7 +103,20 @@ public class App {
                     scan.nextLine();
                 break;
                 case "4":
-                    System.out.println("Opção 3 em desenvolvimento");
+                    System.out.println("Opção 4 em desenvolvimento");
+
+                    System.out.println("Nome: " + user.getApelido());
+                    System.out.println("Salário: R$" + user.getSalario());
+                    PlanoDeContas planos[] = user.getPlanos();
+
+                    for (int i = 0; i < planos.length; i++){
+                        System.out.println( String.format("""
+                            ---------------------
+                            %s          %.1f%%            R$%.2f
+                                """, planos[i].getNome(), planos[i].getPorcent(), ((planos[i].getPorcent()/100) * user.salario)));
+                    }
+
+
                     System.out.println("pressione enter para Continuar");
                     scan.nextLine();
                 break;

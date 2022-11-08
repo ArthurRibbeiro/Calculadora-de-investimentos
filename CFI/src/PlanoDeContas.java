@@ -1,4 +1,6 @@
-public class PlanoDeContas {
+import java.io.Serializable;
+
+public class PlanoDeContas implements Serializable {
     private String nome;
     private double porcent;
     
