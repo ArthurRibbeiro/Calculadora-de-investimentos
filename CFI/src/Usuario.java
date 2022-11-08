@@ -32,7 +32,9 @@ public class Usuario implements Serializable {
         this.planos = planos;
     }
 
-    public PlanoDeContas[] addPlano(PlanoDeContas newPlano) {
+    public void addPlano(String nome, double porcent) {
+
+        PlanoDeContas newPlano = new PlanoDeContas(nome, porcent);
         
         PlanoDeContas[] oldPlanos = this.getPlanos();
 
@@ -43,7 +45,10 @@ public class Usuario implements Serializable {
         }
         tempPlanos [oldPlanos.length] = newPlano;
 
-        return tempPlanos;    
+        this.setPlanos(tempPlanos);
+        
+
+        
     }
     
     

@@ -93,7 +93,15 @@ public class App {
                 //fim da opção 1
                 break;
                 case "2" :
-                    System.out.println("Opção 2 em desenvolvimento");
+                    System.out.println("Informe o nome do novo plano de contas: ");
+                    String tempNome = scan.nextLine();
+
+                    System.out.println("Informe a porcentagem do novo plano de contas: ");
+                    Double tempPorc = scan.nextDouble();
+                    
+                    user.addPlano(tempNome, tempPorc);
+                    salvar(user);
+
                     System.out.println("pressione enter para Continuar");
                     scan.nextLine();
                 break;
@@ -103,7 +111,6 @@ public class App {
                     scan.nextLine();
                 break;
                 case "4":
-                    System.out.println("Opção 4 em desenvolvimento");
 
                     System.out.println("Nome: " + user.getApelido());
                     System.out.println("Salário: R$" + user.getSalario());
