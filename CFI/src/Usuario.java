@@ -7,6 +7,8 @@ public class Usuario implements Serializable {
     public Usuario(String apelido, double salario) {
         this.apelido = apelido;
         this.salario = salario;
+        PlanoDeContas inicial = new PlanoDeContas("Salário", 100);
+        this.planos[0] = inicial; 
 
         
     }
