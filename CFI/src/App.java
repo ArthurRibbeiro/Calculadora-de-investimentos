@@ -27,7 +27,6 @@ public class App {
         }
         //scan.nextLine();
 
-
         do{
             limpar();
             System.out.println("""       
@@ -44,6 +43,7 @@ public class App {
             switch (opcao){
                 case "1":
                     do{
+                        
                         System.out.println("Opção 1 em desenvolvimento");
                         System.out.println("Apelido: " + user.getApelido());                    
                         System.out.println("Salário: R$" + user.getSalario());
@@ -55,8 +55,9 @@ public class App {
                                 0 - Voltar
                                 Selecione uma opção
                                 """);
-                        
+                                
                         subopcao = scan.nextLine();
+                        limpar(args);
 
                         switch (subopcao){
                             case "1":
@@ -155,6 +156,7 @@ public class App {
             System.out.println(e);
             scan.nextLine();
         }
+        
     }
     
     public static Usuario ler(){
