@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         String opcao;
+        String subopcao;
         Scanner scan = new Scanner(System.in);
 
         Usuario user = ler();
@@ -24,26 +25,72 @@ public class App {
             //salva
             salvar(user);
         }
-        scan.nextLine();
+        //scan.nextLine();
 
 
         do{
             limpar();
-            System.out.println("""
-            Selecione uma opção
+            System.out.println("""       
             1 - Editar perfil
             2 - Incluir novo plano de contas
             3 - Editar plano de contas
             4 - Visualizar
-            0 - Sair""");
+            0 - Sair
+            Selecione uma opção
+            """);
             opcao = scan.nextLine();
             limpar(args);
 
             switch (opcao){
                 case "1":
-                    System.out.println("Opção 1 em desenvolvimento");                    
-                    System.out.println("pressione enter para Continuar");
-                    scan.nextLine();
+                    do{
+                        System.out.println("Opção 1 em desenvolvimento");
+                        System.out.println("Apelido: " + user.getApelido());                    
+                        System.out.println("Salário: R$" + user.getSalario());
+                        
+                        System.out.println("""
+                                1 - Alterar apelido
+                                2 - alterar salário
+                                3 - Resetar programa (limpa todos os Dados)
+                                0 - Voltar
+                                Selecione uma opção
+                                """);
+                        
+                        subopcao = scan.nextLine();
+
+                        switch (subopcao){
+                            case "1":
+                            System.out.println("Informe o novo apelido: ");
+                            user.setApelido(scan.nextLine());
+                            salvar(user);
+                            break;
+                            
+                            case "2":
+                            System.out.println("Informe o novo salário: ");
+                            //melhorar verificação de valor inteiro
+                            user.setSalario(scan.nextDouble());
+                            salvar(user);
+                            break;
+
+                            case "3":
+                            System.out.println("Opção 3 em desenvolvimento");
+                            System.out.println("pressione enter para Continuar");
+                            scan.nextLine();
+                            break;
+
+                            case "0":
+                                System.out.println("Voltando...");
+                            break;
+
+                            default:
+                                System.out.println("Informe uma opção válida");
+                                System.out.println("pressione enter para Continuar");
+                                scan.nextLine();
+                            break;
+                        }
+                    }while (!subopcao.equals("0"));
+
+                //fim da opção 1
                 break;
                 case "2" :
                     System.out.println("Opção 2 em desenvolvimento");
