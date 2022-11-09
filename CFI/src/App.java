@@ -43,14 +43,13 @@ public class App {
             switch (opcao){
                 case "1":
                     do{
-                        
-                        System.out.println("Opção 1 em desenvolvimento");
+                        limpar(args);                    
                         System.out.println("Apelido: " + user.getApelido());                    
                         System.out.println("Salário: R$" + user.getSalario());
                         
                         System.out.println("""
                                 1 - Alterar apelido
-                                2 - alterar salário
+                                2 - Alterar salário
                                 3 - Resetar programa (limpa todos os Dados)
                                 0 - Voltar
                                 Selecione uma opção
@@ -108,8 +107,84 @@ public class App {
                 break;
                 case "3":
                     System.out.println("Opção 3 em desenvolvimento");
-                    System.out.println("pressione enter para Continuar");
-                    scan.nextLine();
+
+                    System.out.println("Planos de contas cadastrados:");
+                    PlanoDeContas planos2[] = user.getPlanos();
+
+                    for (int i = 1; i < planos2.length; i++){
+                        System.out.println( String.format("""
+                            (%d)          %s          %.1f%%
+                                """, i, planos2[i].getNome(), planos2[i].getPorcent()));
+                    }
+
+                    System.out.println("Informe o Nº do plano de contas que deseja alterar");
+                    int selecPlano = scan.nextInt();
+                    if (selecPlano > 0 && selecPlano < planos2.length){
+
+                        do{
+                            limpar(args);                        
+                            System.out.println( String.format("""
+                                Plano:
+
+                                (%d)          %s          %.1f%%
+                                    """, selecPlano, planos2[selecPlano].getNome(), planos2[selecPlano].getPorcent()));
+
+                                    System.out.println("""
+                                    1 - Alterar nome do plano
+                                    2 - Alterar porcentagem
+                                    3 - Excluir Plano de contas
+                                    0 - Voltar
+                                    Selecione uma opção
+                                    """);
+
+                                    //bug, passando direto de um dos scan, só funciona com 2
+                                    subopcao = scan.nextLine();
+                                    
+                                    
+                            switch (subopcao){
+                                case "1":
+                                    System.out.println("Informe o novo nome do Plano de contas:");
+                                    planos2[selecPlano].setNome(scan.nextLine());
+                                    user.setPlanos(planos2);
+                                    salvar(user);
+                                    
+                                break;
+
+                                case "2":
+                                    System.out.println("Informe a nova porcentagem do Plano de contas:");
+                                    planos2[selecPlano].setPorcent(scan.nextDouble());
+                                    user.setPlanos(planos2);
+                                    salvar(user);
+                                break;
+
+                                case "3":
+                                    System.out.println("Tem certeza que deseja Excluir?");
+                                    System.out.println("(1 - Sim/ 0 - Não)");
+                                    if (scan.nextInt() == 1){
+                                        //Opção em desenvolvimento
+
+                                    }else{
+                                        System.out.println("Operação negada, Voltando...");
+                                        System.out.println("Pressione enter para continuar");
+                                        scan.nextLine();
+                                    }
+                                
+
+                                break;
+
+                                case "0":
+
+                                break;
+
+                            }
+
+                        }while (!subopcao.equals("0"));
+                        
+
+
+                    }
+                    
+                   
                 break;
                 case "4":
 
@@ -120,8 +195,8 @@ public class App {
                     for (int i = 0; i < planos.length; i++){
                         System.out.println( String.format("""
                             ---------------------
-                            %s          %.1f%%            R$%.2f
-                                """, planos[i].getNome(), planos[i].getPorcent(), ((planos[i].getPorcent()/100) * user.salario)));
+                            (%d)          %s          %.1f%%            R$%.2f
+                                """, i, planos[i].getNome(), planos[i].getPorcent(), ((planos[i].getPorcent()/100) * user.salario)));
                     }
 
 
