@@ -241,7 +241,7 @@ public class App {
         exibePlanos(user, 4);
         
         System.out.println("pressione enter para Continuar");
-        //scan.nextLine();
+        scan.nextLine();
 
         
     }
