@@ -13,11 +13,11 @@ public class App {
         Scanner scan = new Scanner(System.in);
 
         boasVindas();
-        
+
         do{
 
             System.out.println("""       
-            1 - Editar perfil
+            1 - Editar perfil / Resetar programa
             2 - Incluir novo plano de contas
             3 - Editar plano de contas
             4 - Visualizar
@@ -78,8 +78,11 @@ public class App {
             System.out.println(String.format("""
             Olá, %s
             Seus dados Foram carregados com sucesso!
-            Pressione enter para continuar""", (user.getApelido())));
-            scan.nextLine();
+            Para vizualizar os planos de contas, digite 1
+            Ou apenas pressione enter para ir para o menu""", (user.getApelido())));
+            if (scan.nextLine().equals("1")){
+                opcao4();
+            }
         }
     }
 
