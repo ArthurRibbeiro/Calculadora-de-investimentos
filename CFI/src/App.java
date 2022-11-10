@@ -126,12 +126,15 @@ public class App {
                 System.out.println("Tem certeza que deseja Resetar o programa?");
                 System.out.println("(1 - Sim/ 0 - Não)");
                 if (scan.nextInt() == 1){
+                    limpar();
                     Reset();
 
                 }else{
+                    limpar();
                     System.out.println("Operação negada, Voltando...");
                     
                 }                
+
 
                 System.out.println("pressione enter para Continuar");
                 scan.nextLine();
@@ -272,6 +275,7 @@ public class App {
                 for (int i = 0; i < user.planos.length; i++){
                     System.out.println( String.format("""
                         ---------------------
+
                         (%d)\t %-30s  %.1f%%\t\t R$%.2f
                             """, i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
                 }
@@ -325,11 +329,15 @@ public class App {
     }
 
     public static void Reset(){
+        Scanner scan = new Scanner(System.in);
         File file = new File("usuario.arq");
  
         boolean result = file.delete();
         if (result) {
-            System.out.println("Os dados foram apagados com sucesso");
+            System.out.println("Os dados foram apagados com sucesso, O programa será fechado");
+            System.out.println("Pressione enter para continuar");
+            scan.nextLine();
+            System.exit(0);
         }
         else {
             System.out.println("Falha ao deletar os dados");
