@@ -12,21 +12,8 @@ public class App {
         String opcao;
         Scanner scan = new Scanner(System.in);
 
-        Usuario user = ler();
-        if (user == null){
-            System.out.println("nulo");
-            // cria usuário
-            System.out.println("Informe Seu nome:");
-            String apelido = scan.nextLine();
-            System.out.println("Informe o salário que será calculado (preferencialmente líquido):");
-            double salario = scan.nextDouble();
-            user = new Usuario(apelido, salario);
-
-            //salva
-            salvar(user);
-        }
-        //scan.nextLine();
-
+        boasVindas();
+        
         do{
 
             System.out.println("""       
@@ -68,6 +55,32 @@ public class App {
             }
         
         }while (!opcao.equals("0"));
+    }
+
+    public static void boasVindas(){
+        Scanner scan = new Scanner(System.in);
+        Usuario user = ler();
+        if (user == null){
+            //Boas-vindas
+            System.out.print("""
+                    Seja bem vindo(a) à Calculadora Financeira de Investimentos.
+                    Para dar início ao programa,""");
+            // cria usuário
+            System.out.println(" Informe Seu nome:");
+            String apelido = scan.nextLine();
+            System.out.println("Informe o salário que será calculado (preferencialmente líquido):");
+            double salario = scan.nextDouble();
+            user = new Usuario(apelido, salario);
+
+            //salva
+            salvar(user);
+        }else{
+            System.out.println(String.format("""
+            Olá, %s
+            Seus dados Foram carregados com sucesso!
+            Pressione enter para continuar""", (user.getApelido())));
+            scan.nextLine();
+        }
     }
 
     public static void opcao1(){
@@ -272,6 +285,7 @@ public class App {
             obj.close();
             System.out.println("Gravado com sucesso!");
             scan.nextLine();
+            limpar();
         }
         catch(Exception e)
         {
@@ -292,8 +306,7 @@ public class App {
             
         }
         catch(Exception e)
-        {  
-            System.out.println(e);
+        {
             return null;
         }
     }
