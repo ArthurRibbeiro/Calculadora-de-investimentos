@@ -25,6 +25,7 @@ public class App {
             Selecione uma opção
             """);
             opcao = scan.nextLine();
+            limpar();
             
 
             switch (opcao){
@@ -57,7 +58,7 @@ public class App {
         }while (!opcao.equals("0"));
     }
 
-    public static void boasVindas(){
+    public static void boasVindas() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
         if (user == null){
@@ -81,12 +82,13 @@ public class App {
             Para vizualizar os planos de contas, digite 1
             Ou apenas pressione enter para ir para o menu""", (user.getApelido())));
             if (scan.nextLine().equals("1")){
+                limpar();
                 opcao4();
             }
         }
     }
 
-    public static void opcao1(){
+    public static void opcao1() throws IOException, InterruptedException{
         String subopcao;
         Scanner scan = new Scanner(System.in);
         do{
@@ -103,7 +105,8 @@ public class App {
                     Selecione uma opção
                     """);
                     
-            subopcao = scan.nextLine();            
+            subopcao = scan.nextLine();    
+            limpar();        
 
             switch (subopcao){
                 case "1":
@@ -168,7 +171,7 @@ public class App {
 
     }
 
-    public static void opcao3(){
+    public static void opcao3() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
         String subopcao;
@@ -192,7 +195,8 @@ public class App {
                 """);
 
                 //bug, passando direto de um dos scan, só funciona com 2
-                subopcao = scan.nextLine();                                    
+                subopcao = scan.nextLine();   
+                limpar();                                 
                         
                 switch (subopcao){
                     case "1":
@@ -219,8 +223,11 @@ public class App {
                         }else{
                             System.out.println("Operação negada, Voltando...");
                             System.out.println("Pressione enter para continuar");
+                        
                             scan.nextLine();
-                        }                            
+                            
+                        }   
+                                               
                     break;
 
                     case "0":
@@ -232,7 +239,8 @@ public class App {
         
     }
 
-    public static void opcao4(){
+    public static void opcao4() throws IOException, InterruptedException{
+        
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
         System.out.println("Nome: " + user.getApelido());
@@ -242,6 +250,8 @@ public class App {
         
         System.out.println("pressione enter para Continuar");
         scan.nextLine();
+        limpar();
+        
 
         
     }
