@@ -15,6 +15,7 @@ public class App {
         boasVindas();
 
         do{
+            System.console();
 
             System.out.println("""       
             1 - Editar perfil / Resetar programa
@@ -59,6 +60,7 @@ public class App {
     }
 
     public static void boasVindas() throws IOException, InterruptedException{
+        limpar();
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
         if (user == null){
