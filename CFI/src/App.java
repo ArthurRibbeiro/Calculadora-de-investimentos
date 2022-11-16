@@ -156,19 +156,33 @@ public class App {
         
         
     }
-    public static void opcao2(){
+    public static void opcao2() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
+        double porcentLivre = 100;
+
+        for (int i = 1; i <= (user.planos.length-1); i++){
+            porcentLivre -= user.planos[i].getPorcent();
+        }
+
+        System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
         System.out.println("Informe o nome do novo plano de contas: ");
         String tempNome = scan.nextLine();
 
         System.out.println("Informe a porcentagem do novo plano de contas: ");
         Double tempPorc = scan.nextDouble();
-        
-        user.addPlano(tempNome, tempPorc);
-        salvar(user);
 
+        if (tempPorc > porcentLivre){
+            limpar();
+            System.out.println("Não foi possível incluir o plano de contas pois não há porcentagem suficiente livre");
+            System.out.println("É possível liberar mais editando ou excluindo outros planos");
+            
+        }else{
+            user.addPlano(tempNome, tempPorc);
+            salvar(user);
+        }
+        
         System.out.println("pressione enter para Continuar");
         scan.nextLine();
 
@@ -182,13 +196,13 @@ public class App {
         String subopcao;
 
         System.out.println("Planos de contas cadastrados:");
-        PlanoDeContas planos2[] = user.getPlanos();
+        PlanoDeContas planos[] = user.getPlanos();
 
         exibePlanos(user, 3);
 
         System.out.println("Informe o Nº do plano de contas que deseja alterar");
         int selecPlano = scan.nextInt();
-        if (selecPlano > 0 && selecPlano < planos2.length){
+        if (selecPlano > 0 && selecPlano < planos.length){
 
             do{
                 System.out.println("""
@@ -206,16 +220,16 @@ public class App {
                 switch (subopcao){
                     case "1":
                         System.out.println("Informe o novo nome do Plano de contas:");
-                        planos2[selecPlano].setNome(scan.nextLine());
-                        user.setPlanos(planos2);
+                        planos[selecPlano].setNome(scan.nextLine());
+                        user.setPlanos(planos);
                         salvar(user);
                         
                     break;
 
                     case "2":
                         System.out.println("Informe a nova porcentagem do Plano de contas:");
-                        planos2[selecPlano].setPorcent(scan.nextDouble());
-                        user.setPlanos(planos2);
+                        planos[selecPlano].setPorcent(scan.nextDouble());
+                        user.setPlanos(planos);
                         salvar(user);
                     break;
 
@@ -223,7 +237,18 @@ public class App {
                         System.out.println("Tem certeza que deseja Excluir?");
                         System.out.println("(1 - Sim/ 0 - Não)");
                         if (scan.nextInt() == 1){
-                            Reset();
+                            //opção em desenvolvimento
+                            PlanoDeContas[] tempPlanos = new PlanoDeContas[(planos.length - 1)];
+                            for (int i = 0; i< tempPlanos.length; i++){
+                                if (i < selecPlano){
+                                    tempPlanos[i] = planos[i];
+                                }else if (i >= selecPlano){
+                                    tempPlanos[i] = planos [i + 1];
+                                }
+                            }
+                            user.setPlanos(tempPlanos);
+                            salvar(user);
+                            subopcao = "0";
 
                         }else{
                             System.out.println("Operação negada, Voltando...");
@@ -276,10 +301,8 @@ public class App {
             case 4:
                 for (int i = 0; i < user.planos.length; i++){
                     System.out.println( String.format("""
-                        ---------------------
-
-                        (%d)\t %-30s  %.1f%%\t\t R$%.2f
-                            """, i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
+                        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                        (%d)\t %-30s  %.1f%%\t\t R$%.2f""", i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
                 }
             break;
         }
