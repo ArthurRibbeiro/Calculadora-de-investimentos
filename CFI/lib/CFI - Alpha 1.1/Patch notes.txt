@@ -5,6 +5,7 @@
 Alpha 1.1
 
 + Retrocompatibilidade java 
-+ Verificação de porcebtagem disponível ao criar novo plano
++ Verificação de porcebtagem disponível ao criar/alterar plano
 
 ~ Exclusão de planos de contas
+~ Tabulação na exibição dos planos
