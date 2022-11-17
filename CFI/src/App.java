@@ -155,14 +155,12 @@ public class App {
         
         
     }
+    
+
     public static void opcao2() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
         Usuario user = ler();
-        double porcentLivre = 100;
-
-        for (int i = 1; i <= (user.planos.length-1); i++){
-            porcentLivre -= user.planos[i].getPorcent();
-        }
+        Double porcentLivre = verificaPorcentLivre();
 
         System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
@@ -174,7 +172,7 @@ public class App {
 
         if (tempPorc > porcentLivre){
             limpar();
-            System.out.println("Não foi possível incluir o plano de contas pois não há porcentagem suficiente livre");
+            System.out.println("Não foi possível incluir o plano de contas pois não há porcentagem suficiente disponível");
             System.out.println("É possível liberar mais editando ou excluindo outros planos");
             
         }else{
@@ -226,10 +224,22 @@ public class App {
                     break;
 
                     case "2":
+                    double porcentLivre = verificaPorcentLivre();
+                    double novaPorcent;
+                    System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
+
                         System.out.println("Informe a nova porcentagem do Plano de contas:");
-                        planos[selecPlano].setPorcent(scan.nextDouble());
+                        novaPorcent = scan.nextDouble();
+
+                        if (novaPorcent > porcentLivre){
+                            limpar();
+                            System.out.println("Não foi possível alterar a porcentagem do plano pois não há porcentagem suficiente disponível");
+                            System.out.println("É possível liberar mais editando ou excluindo outros planos");                            
+                        }else{
+                        planos[selecPlano].setPorcent(novaPorcent);
                         user.setPlanos(planos);
                         salvar(user);
+                        }                                                
                     break;
 
                     case "3":
@@ -332,6 +342,16 @@ public class App {
         }
         
         
+    }
+
+    public static double verificaPorcentLivre(){
+        Usuario user = ler();
+        double porcentLivre = 100;
+
+        for (int i = 1; i <= (user.planos.length-1); i++){
+            porcentLivre -= user.planos[i].getPorcent();
+        }
+        return porcentLivre;
     }
     
     public static Usuario ler(){
