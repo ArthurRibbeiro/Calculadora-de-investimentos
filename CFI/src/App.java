@@ -17,14 +17,14 @@ public class App {
         do{
             System.console();
 
-            System.out.println("""       
-            1 - Editar perfil / Resetar programa
-            2 - Incluir novo plano de contas
-            3 - Editar plano de contas
-            4 - Visualizar
-            0 - Sair
-            Selecione uma opção
-            """);
+            
+            System.out.println("1 - Editar perfil / Resetar programa");
+            System.out.println("2 - Incluir novo plano de contas");
+            System.out.println("3 - Editar plano de contas");
+            System.out.println("4 - Visualizar");
+            System.out.println("0 - Sair");
+            System.out.println("Selecione uma opção");
+            
             opcao = scan.nextLine();
             limpar();
             
@@ -65,9 +65,8 @@ public class App {
         Usuario user = ler();
         if (user == null){
             //Boas-vindas
-            System.out.print("""
-                    Seja bem vindo(a) à Calculadora Financeira de Investimentos.
-                    Para dar início ao programa,""");
+            System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
+            System.out.println("\nPara dar início ao programa,");
             // cria usuário
             System.out.println(" Informe Seu nome:");
             String apelido = scan.nextLine();
@@ -78,11 +77,11 @@ public class App {
             //salva
             salvar(user);
         }else{
-            System.out.println(String.format("""
-            Olá, %s
-            Seus dados Foram carregados com sucesso!
-            Para vizualizar os planos de contas, digite 1
-            Ou apenas pressione enter para ir para o menu""", (user.getApelido())));
+            
+            System.out.println(String.format("Olá, %s", (user.getApelido())));
+            System.out.println("Seus dados Foram carregados com sucesso!");
+            System.out.println("Para vizualizar os planos de contas, digite 1");
+            System.out.println("Ou apenas pressione enter para ir para o menu");
             if (scan.nextLine().equals("1")){
                 limpar();
                 opcao4();
@@ -99,13 +98,13 @@ public class App {
             System.out.println("Apelido: " + user.getApelido());                    
             System.out.println("Salário: R$" + user.getSalario());
 
-            System.out.println("""
-                    1 - Alterar apelido
-                    2 - Alterar salário
-                    3 - Resetar programa (limpa todos os Dados)
-                    0 - Voltar
-                    Selecione uma opção
-                    """);
+            
+            System.out.println("1 - Alterar apelido");
+            System.out.println("2 - Alterar salário");
+            System.out.println("3 - Resetar programa (limpa todos os Dados)");
+            System.out.println("0 - Voltar");
+            System.out.println("Selecione uma opção");
+                    
                     
             subopcao = scan.nextLine();    
             limpar();        
@@ -205,13 +204,13 @@ public class App {
         if (selecPlano > 0 && selecPlano < planos.length){
 
             do{
-                System.out.println("""
-                1 - Alterar nome do plano
-                2 - Alterar porcentagem
-                3 - Excluir Plano de contas
-                0 - Voltar
-                Selecione uma opção
-                """);
+                
+                System.out.println("1 - Alterar nome do plano");
+                System.out.println("2 - Alterar porcentagem");
+                System.out.println("3 - Excluir Plano de contas");
+                System.out.println("0 - Voltar");
+                System.out.println("Selecione uma opção");
+                
 
                 //bug, passando direto de um dos scan, só funciona com 2
                 subopcao = scan.nextLine();   
@@ -292,17 +291,15 @@ public class App {
         switch (modelo){
             case 3:
                 for (int i = 1; i < user.planos.length; i++){
-                    System.out.println( String.format("""
-                        (%d)\t %-30s  %.1f%%
-                            """, i, user.planos[i].getNome(), user.planos[i].getPorcent()));
+                    System.out.println( String.format("(%d)\t %-30s  %.1f%%", i, user.planos[i].getNome(), user.planos[i].getPorcent()));
                 }
             break;
 
             case 4:
                 for (int i = 0; i < user.planos.length; i++){
-                    System.out.println( String.format("""
-                        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-                        (%d)\t %-30s  %.1f%%\t\t R$%.2f""", i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
+                    
+                    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+                    System.out.println( String.format("(%d)\t %-30s  %.1f%%\t\t R$%.2f", i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
                 }
             break;
         }
@@ -311,11 +308,10 @@ public class App {
     public static void exibePlanos(Usuario user, int modelo, int selecPlano){
 
         // Modelo 1 - Exibição parcial de apenas 1 plano
-        System.out.println( String.format("""
-        Plano:
+        
+        System.out.println("Plano:\n");
 
-        (%d)\t %-30s  %.1f%%
-        """, selecPlano, user.planos[selecPlano].getNome(), user.planos[selecPlano].getPorcent()));
+        System.out.println( String.format("(%d)\t %-30s  %.1f%%", selecPlano, user.planos[selecPlano].getNome(), user.planos[selecPlano].getPorcent()));
     }
 
     public static void salvar(Usuario user){
