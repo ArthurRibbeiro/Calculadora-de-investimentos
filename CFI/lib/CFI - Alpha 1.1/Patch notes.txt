@@ -1,0 +1,10 @@
+[+ feature adicionada]
+[~ correção]
+[- feature removida]
+
+Alpha 1.1
+
++ Retrocompatibilidade java 
++ Verificação de porcebtagem disponível ao criar novo plano
+
+~ Exclusão de planos de contas

@@ -79,7 +79,7 @@ public class App {
         }else{
             
             System.out.println(String.format("Olá, %s", (user.getApelido())));
-            System.out.println("Seus dados Foram carregados com sucesso!");
+            System.out.println("Seus dados Foram carregados com sucesso! \n");
             System.out.println("Para vizualizar os planos de contas, digite 1");
             System.out.println("Ou apenas pressione enter para ir para o menu");
             if (scan.nextLine().equals("1")){
