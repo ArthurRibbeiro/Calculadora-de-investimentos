@@ -308,7 +308,7 @@ public class App {
 
     public static void exibePlanos(Usuario user, int modelo){
         // Modelo 3 - exibição parcial para opção 3 / Modelo 4 - exibição complta para opção 4
-        
+
         int quantChar = quantChar(user.planos);
         switch (modelo){
             case 3:
@@ -337,6 +337,17 @@ public class App {
         System.out.println( String.format("(%d)\t %-"+ (quantChar + 5) +"s  %.1f%%", selecPlano, user.planos[selecPlano].getNome(), user.planos[selecPlano].getPorcent()));
     }
 
+    public static double verificaPorcentLivre(){
+        Usuario user = ler();
+        double porcentLivre = 100;
+
+        for (int i = 1; i <= (user.planos.length-1); i++){
+            porcentLivre -= user.planos[i].getPorcent();
+        }
+        return porcentLivre;
+    }
+
+    
     public static void salvar(Usuario user){
         Scanner scan = new Scanner(System.in);
         try{
@@ -353,19 +364,8 @@ public class App {
             System.out.println(e);
             scan.nextLine();
         }
-        
-        
     }
 
-    public static double verificaPorcentLivre(){
-        Usuario user = ler();
-        double porcentLivre = 100;
-
-        for (int i = 1; i <= (user.planos.length-1); i++){
-            porcentLivre -= user.planos[i].getPorcent();
-        }
-        return porcentLivre;
-    }
     
     public static Usuario ler(){
         try{
