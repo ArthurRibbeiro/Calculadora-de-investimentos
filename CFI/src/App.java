@@ -294,14 +294,26 @@ public class App {
 
         
     }
+    public static int quantChar(PlanoDeContas[] planos){
+        
+        int quantChar = planos[1].getNome().length();
+
+        for (int i = 2; i < planos.length; i++){
+            if (planos[i].getNome().length() > quantChar){
+                quantChar = planos[i].getNome().length();
+            } 
+        }
+        return quantChar;
+    }
 
     public static void exibePlanos(Usuario user, int modelo){
-
         // Modelo 3 - exibição parcial para opção 3 / Modelo 4 - exibição complta para opção 4
+        
+        int quantChar = quantChar(user.planos);
         switch (modelo){
             case 3:
                 for (int i = 1; i < user.planos.length; i++){
-                    System.out.println( String.format("(%d)\t %-30s  %.1f%%", i, user.planos[i].getNome(), user.planos[i].getPorcent()));
+                    System.out.println( String.format("(%d)\t %-"+ (quantChar + 5) +"s  %.1f%%", i, user.planos[i].getNome(), user.planos[i].getPorcent()));
                 }
             break;
 
@@ -309,19 +321,20 @@ public class App {
                 for (int i = 0; i < user.planos.length; i++){
                     
                     System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-                    System.out.println( String.format("(%d)\t %-30s  %.1f%%\t\t R$%.2f", i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
+                    System.out.println( String.format("(%d)\t %-"+ (quantChar + 5) +"s  %.1f%%\t\t R$%.2f", i, user.planos[i].getNome(), user.planos[i].getPorcent(), ((user.planos[i].getPorcent()/100) * user.salario)));
                 }
             break;
         }
     }
 // para modelo 1
     public static void exibePlanos(Usuario user, int modelo, int selecPlano){
-
         // Modelo 1 - Exibição parcial de apenas 1 plano
+
+        int quantChar = quantChar(user.planos);
         
         System.out.println("Plano:\n");
 
-        System.out.println( String.format("(%d)\t %-30s  %.1f%%", selecPlano, user.planos[selecPlano].getNome(), user.planos[selecPlano].getPorcent()));
+        System.out.println( String.format("(%d)\t %-"+ (quantChar + 5) +"s  %.1f%%", selecPlano, user.planos[selecPlano].getNome(), user.planos[selecPlano].getPorcent()));
     }
 
     public static void salvar(Usuario user){
