@@ -62,7 +62,7 @@ public class App {
     public static void boasVindas() throws IOException, InterruptedException{
         limpar();
         Scanner scan = new Scanner(System.in);
-        Usuario user = ler();
+        Usuario user = Usuario.ler();
         if (user == null){
             //Boas-vindas
             System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
@@ -75,7 +75,7 @@ public class App {
             user = new Usuario(apelido, salario);
 
             //salva
-            salvar(user);
+            user.salvar();
         }else{
             
             System.out.println(String.format("Olá, %s", (user.getApelido())));
@@ -94,7 +94,7 @@ public class App {
         Scanner scan = new Scanner(System.in);
         do{
             
-            Usuario user = ler();                             
+            Usuario user = Usuario.ler();                             
             System.out.println("Apelido: " + user.getApelido());                    
             System.out.println("Salário: R$" + user.getSalario());
 
@@ -113,14 +113,14 @@ public class App {
                 case "1":
                 System.out.println("Informe o novo apelido: ");
                 user.setApelido(scan.nextLine());
-                salvar(user);
+                user.salvar();
                 break;
                 
                 case "2":
                 System.out.println("Informe o novo salário: ");
                 //melhorar verificação de valor inteiro
                 user.setSalario(scan.nextDouble());
-                salvar(user);
+                user.salvar();
                 break;
 
                 case "3":
@@ -159,7 +159,7 @@ public class App {
 
     public static void opcao2() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
-        Usuario user = ler();
+        Usuario user = Usuario.ler();
         Double porcentLivre = verificaPorcentLivre();
 
         System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
@@ -177,7 +177,7 @@ public class App {
             
         }else{
             user.addPlano(tempNome, tempPorc);
-            salvar(user);
+            user.salvar();
         }
         
         System.out.println("pressione enter para Continuar");
@@ -189,7 +189,7 @@ public class App {
 
     public static void opcao3() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
-        Usuario user = ler();
+        Usuario user = Usuario.ler();
         String subopcao;
 
         System.out.println("Planos de contas cadastrados:");
@@ -219,7 +219,7 @@ public class App {
                         System.out.println("Informe o novo nome do Plano de contas:");
                         planos[selecPlano].setNome(scan.nextLine());
                         user.setPlanos(planos);
-                        salvar(user);
+                        user.salvar();
                         
                     break;
 
@@ -238,7 +238,7 @@ public class App {
                         }else{
                         planos[selecPlano].setPorcent(novaPorcent);
                         user.setPlanos(planos);
-                        salvar(user);
+                        user.salvar();
                         }                                                
                     break;
 
@@ -256,7 +256,7 @@ public class App {
                                 }
                             }
                             user.setPlanos(tempPlanos);
-                            salvar(user);
+                            user.salvar();
                             subopcao = "0";
 
                         }else{
@@ -281,7 +281,7 @@ public class App {
     public static void opcao4() throws IOException, InterruptedException{
         
         Scanner scan = new Scanner(System.in);
-        Usuario user = ler();
+        Usuario user = Usuario.ler();
         System.out.println("Nome: " + user.getApelido());
         System.out.println("Salário: R$" + user.getSalario());
 
@@ -338,48 +338,13 @@ public class App {
     }
 
     public static double verificaPorcentLivre(){
-        Usuario user = ler();
+        Usuario user = Usuario.ler();
         double porcentLivre = 100;
 
         for (int i = 1; i <= (user.planos.length-1); i++){
             porcentLivre -= user.planos[i].getPorcent();
         }
         return porcentLivre;
-    }
-
-    
-    public static void salvar(Usuario user){
-        Scanner scan = new Scanner(System.in);
-        try{
-            FileOutputStream arq = new FileOutputStream("usuario.arq");
-            ObjectOutputStream obj = new ObjectOutputStream(arq);
-            obj.writeObject(user);
-            obj.close();
-            System.out.println("Gravado com sucesso!");
-            scan.nextLine();
-            limpar();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-            scan.nextLine();
-        }
-    }
-
-    
-    public static Usuario ler(){
-        try{
-            FileInputStream arq = new FileInputStream("usuario.arq");
-            ObjectInputStream obj = new ObjectInputStream(arq);
-            Usuario user = (Usuario)obj.readObject();    
-            obj.close();
-            return user;                 
-            
-        }
-        catch(Exception e)
-        {
-            return null;
-        }
     }
 
     public static void Reset(){

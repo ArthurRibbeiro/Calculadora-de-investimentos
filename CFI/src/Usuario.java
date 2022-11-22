@@ -1,4 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class Usuario implements Serializable {
     String apelido;
@@ -49,6 +54,40 @@ public class Usuario implements Serializable {
         
 
         
+    }
+
+    public void salvar(){
+        Scanner scan = new Scanner(System.in);
+        try{
+            FileOutputStream arq = new FileOutputStream("usuario.arq");
+            ObjectOutputStream obj = new ObjectOutputStream(arq);
+            obj.writeObject(this);
+            obj.close();
+            System.out.println("Gravado com sucesso!");
+            System.out.println("Pressione Enter para continuar");
+            scan.nextLine();
+            App.limpar();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            scan.nextLine();
+        }
+    }
+
+    public static Usuario ler(){
+        try{
+            FileInputStream arq = new FileInputStream("usuario.arq");
+            ObjectInputStream obj = new ObjectInputStream(arq);
+            Usuario user = (Usuario)obj.readObject();    
+            obj.close();
+            return user;                 
+            
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
     
     
