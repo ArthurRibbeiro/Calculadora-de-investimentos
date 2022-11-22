@@ -296,9 +296,9 @@ public class App {
     }
     public static int quantChar(PlanoDeContas[] planos){
         
-        int quantChar = planos[1].getNome().length();
+        int quantChar = planos[0].getNome().length();
 
-        for (int i = 2; i < planos.length; i++){
+        for (int i = 0; i < planos.length; i++){
             if (planos[i].getNome().length() > quantChar){
                 quantChar = planos[i].getNome().length();
             } 
