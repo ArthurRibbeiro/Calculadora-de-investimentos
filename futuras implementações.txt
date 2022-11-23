@@ -3,6 +3,17 @@ futuras implementações
 
 tratamento na entrada de dados incorreta
 
+
+
+corrigir exibicao sem plano cadastrado  ok
+
+Inclusão de planos sequencialmente
+
+Template de planos iniciais
+
+Centralizar elementos
+
+
 calculo de gastos fixos
 
-
+apresentação inicial ao usuário
