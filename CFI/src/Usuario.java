@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Usuario implements Serializable {
     String apelido;
     double salario;
-
     ArrayList<PlanoDeContas> planos = new ArrayList<PlanoDeContas>();
     //PlanoDeContas[] planos;
     public Usuario(String apelido, double salario) {
@@ -54,12 +53,14 @@ public class Usuario implements Serializable {
             System.out.println("Pressione Enter para continuar");
             scan.nextLine();
             App.limpar();
+            
         }
         catch(Exception e)
         {
             System.out.println(e);
             scan.nextLine();
         }
+        scan.close();
     }
 
     public static Usuario ler(){

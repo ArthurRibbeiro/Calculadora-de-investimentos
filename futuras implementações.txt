@@ -1,19 +1,19 @@
 futuras implementações
 
 
-tratamento na entrada de dados incorreta
-
-
-
 corrigir exibicao sem plano cadastrado  ok
+
+tratamento na entrada de dados incorreta thompson
+
+Centralizar elementos hugo
+
 
 Inclusão de planos sequencialmente
 
+apresentação inicial ao usuário em processo
+
 Template de planos iniciais
-
-Centralizar elementos
-
 
 calculo de gastos fixos
 
-apresentação inicial ao usuário
+Usar arraylist em vez de arrays comuns ok

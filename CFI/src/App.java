@@ -64,8 +64,10 @@ public class App {
         Scanner scan = new Scanner(System.in);
         Usuario user = Usuario.ler();
         if (user == null){
-            //Boas-vindas
-            System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
+            
+            primeirosPassos();
+            
+            
             System.out.println("\nPara dar início ao programa,");
             // cria usuário
             System.out.println(" Informe Seu nome:");
@@ -87,6 +89,39 @@ public class App {
                 opcao4();
             }
         }
+    }
+
+    public static void primeirosPassos() throws IOException, InterruptedException{
+        Scanner scan = new Scanner(System.in);
+        //Boas-vindas
+        System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
+        
+        System.out.println("\nVamos aos primeiros passos do programa \nPressione Enter para continuar");
+        scan.nextLine();
+
+        limpar();
+        System.out.println("O objetivo de investir em geral é acumular um capital cada vez maior");
+        System.out.println("Mas esse capital não sai do além, ele vem de várias pequenas quantias\nreservadas ao longo dos anos, que resultam em um rendimento suficiente para viver dos dividendos ");
+        System.out.println("\nQuando se fala em investimento, deve-se ter em mente que, uma vez que o valor tem que sair de algum lugar,\nnão se pode gastar toda a renda, ela deve ser administrada para que sobre uma fatia destinada aos investimentos");
+        
+        System.out.println("\nPressione Enter para continuar");
+        scan.nextLine();
+
+        limpar();
+        System.out.println("E é nisso que o programa busca auxiliar,\nadministrar a renda de forma que seja possível investir uma parte da renda\nsem comprometer as contas mensais, abdicar dos gastos com lazer nem comprometer aquele sonho de consumo");
+        System.out.println("\nCriando Planos de Contas e Dividindo a renda com base em porcentagens ");
+
+        System.out.println("\nPressione Enter para continuar");
+        scan.nextLine();
+
+        limpar();
+        System.out.println("Gastos necessários");
+        System.out.println("\nÉ necessário separar uma parte para as contas mensais, fixas e necessárias");
+        System.out.println("haverá um plano de contas padrão reservado para essa finalidade, não será possível excluir, mas é possível alterar a porcentagem À vontade, inclusive para 0% caso deseje.");
+    
+
+
+        scan.close();
     }
 
     public static void opcao1() throws IOException, InterruptedException{
