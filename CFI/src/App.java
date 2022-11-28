@@ -65,16 +65,18 @@ public class App {
         Usuario user = Usuario.ler();
         if (user == null){
             
-            primeirosPassos();
-            
-            
+            String[] preferencias =  primeirosPassos();
+
+            limpar(preferencias);
+
+            System.out.println("Passos Finais");
             System.out.println("\nPara dar início ao programa,");
             // cria usuário
             System.out.println("Informe Seu nome:");
             String apelido = scan.nextLine();
             System.out.println("\nInforme o salário que será calculado (preferencialmente líquido):");
             double salario = scan.nextDouble();
-            user = new Usuario(apelido, salario);
+            user = new Usuario(apelido, salario, preferencias);
 
             //salva
             user.salvar();
@@ -91,13 +93,26 @@ public class App {
         }
     }
 
-    public static void primeirosPassos() throws IOException, InterruptedException{
+    public static String simOuNao(){
         Scanner scan = new Scanner(System.in);
+        String resposta = scan.nextLine().toUpperCase();
+        while ((!resposta.equals("S")) && (!resposta.equals("N"))){
+            System.out.println("Informe uma resposta válida");
+            System.out.println(resposta);
+            resposta = scan.nextLine().toUpperCase();
+        }
+            return resposta;
+
+    }
+    public static String[] primeirosPassos() throws IOException, InterruptedException{
+        Scanner scan = new Scanner(System.in);
+
         //Boas-vindas
         System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
         
         System.out.println("\nVamos aos primeiros passos do programa \nPressione Enter para continuar");
         scan.nextLine();
+        String[] preferencias = new String[5];
 
         limpar();
         System.out.println("O objetivo de investir em geral é acumular um capital cada vez maior");
@@ -115,13 +130,44 @@ public class App {
         scan.nextLine();
 
         limpar();
-        //System.out.println("Gastos necessários");
-        //System.out.println("\nÉ necessário separar uma parte para as contas mensais, fixas e necessárias");
-        //System.out.println("haverá um plano de contas padrão reservado para essa finalidade, não será possível excluir, mas é possível alterar a porcentagem À vontade, inclusive para 0% caso deseje.");
-    
+        System.out.println("Gastos necessários");
+        System.out.println("\nÉ indispensável separar uma parte para as contas mensais, fixas e necessárias\nesse valor não pode ser 100% da renda, mas deve cobrir as contas do mês");
+        System.out.println("\nCaso os gastos mensais ultrapassem o valor da fatia, primeiramente pode-se tentar cortar alguns gastos ");
+        System.out.println("Caso ainda assim o valor fuja o planejamento, reajuste as porcentagens à sua realidade");
+        System.out.println("\n(Valor recomendado: 55%) haverá um plano de contas padrão reservado para essa finalidade,\nnão será possível excluir, mas é possível alterar a porcentagem À vontade,\ninclusive para 0% caso deseje.");
+        preferencias[0] = "S";
+        scan.nextLine();
 
+        limpar();
+        System.out.println("Educação");
+        System.out.println("\nEducar-se é a base de tudo\nRecomenda-se que haja uma fatia destinada a educação, pode ser destinada a livros, cursos, ou com o que preferir");
+        System.out.println("\n(Valor recomendado: 10%)\nPode ser editado ou excluído depois");
+        System.out.println("Deseja utilizar este plano de contas? (S - Sim/N - Não)");
+        preferencias[1] = simOuNao();
 
-        
+        limpar();
+        System.out.println("Lazer");
+        System.out.println("\nNem só de produtividade e lucros vive o homem, também é preciso usufruir dos frutos de seu trabalho");
+        System.out.println("Uma fatia destinada a gastar como preferir, ");
+        System.out.println("\n(Valor recomendado: 10%)\nPode ser editado ou excluído depois");
+        System.out.println("Deseja utilizar este plano de contas? (S - Sim/N - Não)");
+        preferencias[2] = simOuNao();
+
+        limpar();
+        System.out.println("Investimentos de Curto/médio prazo");
+        System.out.println("\nFatia destinada a Objetivos de Curto/médio prazo, para objetivos pessoais, sonhos de consumo, patrimonios e bens");
+        System.out.println("\n(Valor recomendado: 10%)\nPode ser editado ou excluído depois");
+        System.out.println("Deseja utilizar este plano de contas? (S - Sim/N - Não)");
+        preferencias[3] = simOuNao();
+
+        limpar();
+        System.out.println("Investimentos de Longo prazo");
+        System.out.println("\nFatia destinada a Objetivos de Longo prazo, como acumulo de patrimonio e renda passiva");
+        System.out.println("\n(Valor recomendado: 15%)\nPode ser editado ou excluído depois");
+        System.out.println("Deseja utilizar este plano de contas? (S - Sim/N - Não)");
+        preferencias[4] = simOuNao();
+
+        return preferencias;       
     }
 
     public static void opcao1() throws IOException, InterruptedException{

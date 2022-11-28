@@ -10,11 +10,21 @@ public class Usuario implements Serializable {
     String apelido;
     double salario;
     ArrayList<PlanoDeContas> planos = new ArrayList<PlanoDeContas>();
+    String[] templates = {"Necessidades", "55", "Educação", "10", "Lazer", "10", "Invest. Curto/Med. Prazo", "10", "Invest. Longo Prazo", "15"};
+    
     //PlanoDeContas[] planos;
-    public Usuario(String apelido, double salario) {
+    public Usuario(String apelido, double salario, String[] preferencias) {
         this.apelido = apelido;
         this.salario = salario;
         this.planos.add(new PlanoDeContas("Balanceio", 100));
+
+        
+
+        for (int i = 0; i < preferencias.length; i++){
+            if (preferencias[i].equals("S"))
+                this.planos.add(new PlanoDeContas(templates[i*2], Integer.parseInt(templates[(i*2)+1])));         
+
+        }
 
     }
     public String getApelido() {
