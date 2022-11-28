@@ -249,7 +249,7 @@ public class App {
         String tempNome = scan.nextLine();
 
         System.out.println("Informe a porcentagem do novo plano de contas: ");
-        Double tempPorc = scan.nextDouble();
+        Double tempPorc = recebePorcent();
 
         if (tempPorc > porcentLivre){
             limpar();
@@ -309,7 +309,7 @@ public class App {
                     System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
                         System.out.println("Informe a nova porcentagem do Plano de contas:");
-                        novaPorcent = scan.nextDouble();
+                        novaPorcent = recebePorcent();
 
                         if (novaPorcent > porcentLivre){
                             limpar();
@@ -415,6 +415,33 @@ public class App {
             porcentLivre -= user.planos.get(i).getPorcent();
         }
         return porcentLivre;
+    }
+
+    public static double recebePorcent(){
+        Scanner scan = new Scanner(System.in);
+        boolean sucesso = false;
+        double porcent = 0;
+        String valorRecebido;
+
+        do{
+            valorRecebido = scan.nextLine();
+            
+
+            valorRecebido = valorRecebido.replaceAll(",", ".");
+            valorRecebido = valorRecebido.replaceAll("%", "");
+            valorRecebido = valorRecebido.trim();
+            
+            try{
+                porcent = Double.parseDouble(valorRecebido);
+                sucesso = true;
+
+            }catch (Exception e){
+                System.out.println("Insira uma porcentagem válida");
+            }
+        }while (sucesso!= true);
+        return porcent;
+        
+        
     }
 
     public static void Reset(){
