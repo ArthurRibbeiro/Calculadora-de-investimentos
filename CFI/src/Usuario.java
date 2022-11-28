@@ -60,7 +60,7 @@ public class Usuario implements Serializable {
             System.out.println(e);
             scan.nextLine();
         }
-        scan.close();
+        //scan.close();
     }
 
     public static Usuario ler(){

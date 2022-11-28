@@ -2,6 +2,12 @@
 [~ correção]
 [- feature removida]
 
+Alpha 1.2.1
+
++ Primeiros Passos
+
+~ Exibição sem planos cadastrados
+
 Alpha 1.1
 
 + Retrocompatibilidade java 

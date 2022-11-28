@@ -70,7 +70,7 @@ public class App {
             
             System.out.println("\nPara dar início ao programa,");
             // cria usuário
-            System.out.println(" Informe Seu nome:");
+            System.out.println("Informe Seu nome:");
             String apelido = scan.nextLine();
             System.out.println("\nInforme o salário que será calculado (preferencialmente líquido):");
             double salario = scan.nextDouble();
@@ -115,13 +115,13 @@ public class App {
         scan.nextLine();
 
         limpar();
-        System.out.println("Gastos necessários");
-        System.out.println("\nÉ necessário separar uma parte para as contas mensais, fixas e necessárias");
-        System.out.println("haverá um plano de contas padrão reservado para essa finalidade, não será possível excluir, mas é possível alterar a porcentagem À vontade, inclusive para 0% caso deseje.");
+        //System.out.println("Gastos necessários");
+        //System.out.println("\nÉ necessário separar uma parte para as contas mensais, fixas e necessárias");
+        //System.out.println("haverá um plano de contas padrão reservado para essa finalidade, não será possível excluir, mas é possível alterar a porcentagem À vontade, inclusive para 0% caso deseje.");
     
 
 
-        scan.close();
+        
     }
 
     public static void opcao1() throws IOException, InterruptedException{
