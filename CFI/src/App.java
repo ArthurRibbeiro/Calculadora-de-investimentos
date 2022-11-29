@@ -326,7 +326,7 @@ public class App {
                     case "3":
                         System.out.println("Tem certeza que deseja Excluir?");
                         System.out.println("(1 - Sim/ 0 - Não)");
-                        if (scan.nextInt() == 1){
+                        if (scan.nextInt() == 1 && selecPlano != 1){
                             //opção em desenvolvimento
                             planos.remove(selecPlano);
 
