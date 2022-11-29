@@ -108,7 +108,7 @@ public class App {
         Scanner scan = new Scanner(System.in);
 
         //Boas-vindas
-        System.out.println("Seja bem vindo(a) à Calculadora Financeira de Investimentos.");
+        System.out.println("Seja bem vindo(a) ao seu Organizador Financeiro.");
         
         System.out.println("\nVamos aos primeiros passos do programa \nPressione Enter para continuar");
         scan.nextLine();

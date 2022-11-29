@@ -4,6 +4,13 @@
 
 Alpha 1.2.1
 
++Template de planos iniciais
+
+~ Entrada de Porcentagens
+~ Primeiros passos
+
+Alpha 1.2.1
+
 + Primeiros Passos
 
 ~ Exibição sem planos cadastrados
