@@ -35,15 +35,11 @@ public class App {
             
             System.out.println(String.format("Olá, %s", (user.getApelido())));
             System.out.println("Seus dados Foram carregados com sucesso! \n");
-            System.out.println("Para vizualizar os planos de contas, digite 1");
-            System.out.println("Ou apenas pressione enter para ir para o menu");
-            if (scan.nextLine().equals("1")){
-                limpar();
-                visualizar();
-                System.out.println("pressione enter para Continuar");
-                scan.nextLine();
-                limpar();
-            }
+
+            System.out.println("Pressione enter para ir para o menu principal");
+            scan.nextLine();
+                
+        
         }
     }
 
@@ -312,7 +308,7 @@ public class App {
     public static void incluirPlano() throws IOException, InterruptedException{
         Scanner scan = new Scanner(System.in);
         Usuario user = Usuario.ler();
-        Double porcentLivre = verificaPorcentLivre();
+        Double porcentLivre = user.verificaPorcentLivre();
 
         System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
@@ -368,7 +364,7 @@ public class App {
                     break;
 
                     case "2":
-                    double porcentLivre = verificaPorcentLivre();
+                    double porcentLivre = user.verificaPorcentLivre();
                     double novaPorcent;
                     System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
@@ -505,15 +501,7 @@ public class App {
    
 
 
-    public static double verificaPorcentLivre(){
-        Usuario user = Usuario.ler();
-        double porcentLivre = 100;
-
-        for (int i = 1; i <= (user.planos.size()-1); i++){
-            porcentLivre -= user.planos.get(i).getPorcent();
-        }
-        return porcentLivre;
-    }
+    
 
     public static double recebePorcent(){
         Scanner scan = new Scanner(System.in);

@@ -103,6 +103,9 @@ public class Usuario implements Serializable {
                     System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
                     System.out.println( String.format("(%d)\t %-"+ (quantChar + 5) +"s  %.1f%%\t\t R$%.2f", i, this.planos.get(i).getNome(), this.planos.get(i).getPorcent(), ((this.planos.get(i).getPorcent()/100) * this.salario)));
                 }
+
+                this.infoGastos();  
+
             break;
         }
     }
@@ -155,7 +158,31 @@ public class Usuario implements Serializable {
             System.out.println("Ainda não há gastos cadastrados");
         }
     }
+
+    public infoGastos(){
+        double soma = 0;
+        for (int i = 0; i < this.gastos.size(); i++){
+            soma += this.gastos.get(i).getCusto();
+        }
+        double necessidades = this.planos.get(1).getPorcent()/100 * this.salario;
+
+        System.out.println("\n| = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = |");
+        System.out.println( String.format("\t%-"+ (30) +"s  R$%.2f", "Plano de Necessidades", necessidades));
+
+        System.out.println( String.format("\n\t%-"+ (30) +"s  R$%.1f", "Soma dos Gastos", soma));
+        System.out.println("\t--------------------------------------------");
+        System.out.println( String.format("\t%-"+ (30) +"s  R$%.1f", "Valor restante", (necessidades - soma)));
+    }
     
+    public double verificaPorcentLivre(){
+        
+        double porcentLivre = 100;
+
+        for (int i = 1; i <= (this.planos.size()-1); i++){
+            porcentLivre -= this.planos.get(i).getPorcent();
+        }
+        return porcentLivre;
+    }
 
     public  int quantChar(){
 
