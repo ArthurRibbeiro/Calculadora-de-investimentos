@@ -22,9 +22,4 @@ public class PlanoDeContas implements Serializable {
         
         this.porcent = porcent;
     }
-
-
-
-    
-
-    }
+}
