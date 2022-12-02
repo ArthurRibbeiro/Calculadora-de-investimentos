@@ -89,7 +89,7 @@ public class App {
         System.out.println("\nÉ indispensável separar uma parte para as contas mensais, fixas e necessárias\nesse valor não pode ser 100% da renda, mas deve cobrir as contas do mês");
         System.out.println("\nCaso os gastos mensais ultrapassem o valor da fatia, primeiramente pode-se tentar cortar alguns gastos ");
         System.out.println("Caso ainda assim o valor fuja o planejamento, reajuste as porcentagens à sua realidade");
-        System.out.println("\n(Valor recomendado: 55%) haverá um plano de contas padrão reservado para essa finalidade,\nnão será possível excluir, mas é possível alterar a porcentagem À vontade,\ninclusive para 0% caso deseje.");
+        System.out.println("\n(Valor recomendado: 55%) haverá um plano de contas padrão reservado para essa finalidade,\nnão será possível excluir, mas é possível alterar a porcentagem à vontade,\ninclusive para 0% caso deseje.");
         preferencias[0] = "S";
         scan.nextLine();
 

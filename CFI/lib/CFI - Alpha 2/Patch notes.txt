@@ -1,8 +1,17 @@
 [+ feature adicionada]
 [~ correção]
 [- feature removida]
+Alpha 2
 
-Alpha 1.2.1
++ Ferramenta Gestão de Gastos
++ Informação de Sobras dos gastos fixos (necessidades - Gastos)
+
+~ Mudança no layout
+
+- tela de exibição inicial
+- tela de exibição interna
+
+Alpha 1.2.2
 
 +Template de planos iniciais
 
