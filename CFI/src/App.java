@@ -75,13 +75,17 @@ public class App {
 
         limpar();
         System.out.println("E é nisso que o programa busca auxiliar,\nadministrar a renda de forma que seja possível investir uma parte da renda\nsem comprometer as contas mensais, abdicar dos gastos com lazer nem comprometer aquele sonho de consumo");
-        System.out.println("\nCriando Planos de Contas e Dividindo a renda com base em porcentagens ");
+        
+        System.out.println("\nO programa conta com duas funcionalidades principais");
+
+        System.out.println("\nCriação de Planos de Contas\n\tPara o usuário se organizar manipulando e dividindo\n\ta renda em fatias com base em porcentagens");
+        System.out.println("\nE Controle de Gastos Fixos\n\tUma tela onde é possível cadastrar os gastos do mes que não variam\n\tEsse valor é somado e subtraído pelo Plano de Contas destinado à Gastos fixos\n\tO que sobra é informado ao Usuário");
 
         System.out.println("\nPressione Enter para continuar");
         scan.nextLine();
 
         limpar();
-        System.out.println("Gastos Fixos Necessários");
+        System.out.println("Gastos Fixos");
         System.out.println("\nÉ indispensável separar uma parte para as contas mensais, fixas e necessárias\nesse valor não pode ser 100% da renda, mas deve cobrir as contas do mês");
         System.out.println("\nCaso os gastos mensais ultrapassem o valor da fatia, primeiramente pode-se tentar cortar alguns gastos ");
         System.out.println("Caso ainda assim o valor fuja o planejamento, reajuste as porcentagens à sua realidade");
@@ -129,8 +133,8 @@ public class App {
         Scanner scan = new Scanner(System.in);
         do{
         limpar();
-        System.out.println("1 - Tela de planos");
-        System.out.println("2 - Tela de gastos");
+        System.out.println("1 - Planos de Contas");
+        System.out.println("2 - Gestão de Gastos");
         System.out.println("3 - Editar Perfil");
         System.out.println("0 - Sair");
         System.out.println("\nSelecione uma opção");
@@ -316,7 +320,7 @@ public class App {
         String tempNome = scan.nextLine();
 
         System.out.println("Informe a porcentagem do novo plano de contas: ");
-        Double tempPorc = recebePorcent();
+        Double tempPorc = recebeValor();
 
         if (tempPorc > porcentLivre){
             limpar();
@@ -369,12 +373,16 @@ public class App {
                     System.out.println(String.format("Ainda há %.1f%% a serem distribuidos", porcentLivre));
 
                         System.out.println("Informe a nova porcentagem do Plano de contas:");
-                        novaPorcent = recebePorcent();
+                        novaPorcent = recebeValor();
 
-                        if (novaPorcent > porcentLivre){
+                        if (novaPorcent >  (user.planos.get(selecPlano).getPorcent() + porcentLivre)){
                             limpar();
                             System.out.println("Não foi possível alterar a porcentagem do plano pois não há porcentagem suficiente disponível");
-                            System.out.println("É possível liberar mais editando ou excluindo outros planos");                            
+                            System.out.println("É possível liberar mais editando ou excluindo outros planos");    
+
+                            System.out.println("Pressione enter para continuar");
+                            scan.nextLine();
+
                         }else{
                             user.planos.get(selecPlano).setPorcent(novaPorcent);
                             user.salvar();
@@ -413,7 +421,7 @@ public class App {
         String tempNome = scan.nextLine();
 
         System.out.println("Informe o custo: ");
-        Double tempCusto = recebePorcent();
+        Double tempCusto = recebeValor();
 
         user.addGasto(tempNome, tempCusto);
         user.salvar();
@@ -456,7 +464,7 @@ public class App {
                     double novoCusto;
 
                         System.out.println("Informe o novo Valor do Custo:");
-                        novoCusto = recebePorcent();
+                        novoCusto = recebeValor();
                         user.gastos.get(selecGasto).setCusto(novoCusto);
                         user.salvar();
                                                                 
@@ -486,8 +494,6 @@ public class App {
     }
 
     public static void visualizar() throws IOException, InterruptedException{
-        
-        Scanner scan = new Scanner(System.in);
         Usuario user = Usuario.ler();
         System.out.println("Nome: " + user.getApelido());
         System.out.println("Salário: R$" + user.getSalario());
@@ -495,15 +501,8 @@ public class App {
         user.exibePlanos(4);
         
     }
-    
-    
 
-   
-
-
-    
-
-    public static double recebePorcent(){
+    public static double recebeValor(){
         Scanner scan = new Scanner(System.in);
         boolean sucesso = false;
         double porcent = 0;
@@ -515,6 +514,8 @@ public class App {
 
             valorRecebido = valorRecebido.replaceAll(",", ".");
             valorRecebido = valorRecebido.replaceAll("%", "");
+            valorRecebido = valorRecebido.replaceAll("R", "");
+            valorRecebido = valorRecebido.replaceAll("$", "");
             valorRecebido = valorRecebido.trim();
             
             try{
@@ -546,8 +547,6 @@ public class App {
         }
 
     }
-
-    
 
     public static void limpar(String... arg) throws IOException, InterruptedException {
         try {
