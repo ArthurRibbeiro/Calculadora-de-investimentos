@@ -432,7 +432,7 @@ public class App {
         Usuario user = Usuario.ler();
         String subopcao;
 
-        user.exibeGastos(3);
+        
 
 
         System.out.println("Informe o Nº do Gasto que deseja alterar");
