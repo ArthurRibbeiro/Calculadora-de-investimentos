@@ -1,6 +1,12 @@
 [+ feature adicionada]
 [~ correção]
 [- feature removida]
+
+Alpha 2.1
+
+~ tela de Edição de Gastos
+
+
 Alpha 2
 
 + Ferramenta Gestão de Gastos
